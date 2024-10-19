@@ -102,6 +102,13 @@ public class SettingsDialog extends Dialog{
         }
 
         /** Localized title. */
+        public void checkPref(String name, boolean def, Consumer<Boolean> changed, boolean keepName){
+            list.add(new CheckSetting(name, Bundles.get("setting." + name + ".name"), def, changed, keepName));
+            Settings.defaults(name, def);
+            rebuild();
+        }
+
+        /** Localized title. */
         public void checkPref(String name, boolean def, Consumer<Boolean> changed){
             list.add(new CheckSetting(name, Bundles.get("setting." + name + ".name"), def, changed));
             Settings.defaults(name, def);
@@ -137,8 +144,17 @@ public class SettingsDialog extends Dialog{
         public class CheckSetting extends Setting{
             boolean def;
             Consumer<Boolean> changed;
+            private boolean keepName = false;
 
             CheckSetting(String name, String title, boolean def, Consumer<Boolean> changed){
+                this.name = name;
+                this.title = title;
+                this.def = def;
+                this.changed = changed;
+            }
+
+            CheckSetting(String name, String title, boolean def, Consumer<Boolean> changed, boolean keepName){
+                this.keepName = keepName;
                 this.name = name;
                 this.title = title;
                 this.def = def;
@@ -148,6 +164,7 @@ public class SettingsDialog extends Dialog{
             @Override
             public void add(SettingsTable table){
                 CheckBox box = new CheckBox(title);
+                if(this.keepName) box.setName(this.name);
 
                 box.setChecked(Settings.getBool(name));
 
