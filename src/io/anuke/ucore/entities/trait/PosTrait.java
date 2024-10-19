@@ -5,6 +5,7 @@ import io.anuke.ucore.util.Mathf;
 
 public interface PosTrait{
     float getX();
+
     float getY();
 
     default float angleTo(PosTrait other){

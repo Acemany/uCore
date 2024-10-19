@@ -19,7 +19,7 @@ package io.anuke.ucore.scene.ui;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.utils.Align;
 import io.anuke.ucore.core.Core;
-import io.anuke.ucore.function.Supplier;
+import io.anuke.ucore.function.ActionProvider;
 import io.anuke.ucore.scene.Action;
 import io.anuke.ucore.scene.Element;
 import io.anuke.ucore.scene.Scene;
@@ -40,7 +40,7 @@ public class Dialog extends Window{
     //TODO just make this work properly by calculating padding
     public static float closePadT, closePadR;
 
-    private static Supplier<Action>
+    private static ActionProvider
             defaultShowAction = () -> Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.4f, Interpolation.fade)),
             defaultHideAction = () -> Actions.fadeOut(0.4f, Interpolation.fade);
     protected InputListener ignoreTouchDown = new InputListener(){
@@ -68,11 +68,19 @@ public class Dialog extends Window{
         initialize();
     }
 
-    public static void setHideAction(Supplier<Action> prov){
+    public static ActionProvider getHideAction(){
+        return defaultHideAction;
+    }
+
+    public static void setHideAction(ActionProvider prov){
         defaultHideAction = prov;
     }
 
-    public static void setShowAction(Supplier<Action> prov){
+    public static ActionProvider getShowAction(){
+        return defaultShowAction;
+    }
+
+    public static void setShowAction(ActionProvider prov){
         defaultShowAction = prov;
     }
 

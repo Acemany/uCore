@@ -412,6 +412,8 @@ public class Inputs{
 
     /** Represents either a keyboard or controller. */
     public static class InputDevice{
+        public static final int BUTTONS = 256;
+
         public final DeviceType type;
         public final String name;
         public final Controller controller;

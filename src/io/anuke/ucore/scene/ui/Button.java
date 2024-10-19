@@ -60,7 +60,7 @@ public class Button extends Table implements Disableable{
     BooleanProvider disabledProvider;
     private ButtonStyle style;
     private ClickListener clickListener;
-    private boolean programmaticChangeEvents;
+    private boolean programmaticChangeEvents = true;
     private float transitionTime;
     private boolean drawOver = false;
 

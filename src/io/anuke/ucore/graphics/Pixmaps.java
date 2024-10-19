@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import io.anuke.ucore.function.IntPositionConsumer;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
@@ -116,10 +115,10 @@ public class Pixmaps{
         return (i & 0x000000ff) == 0;
     }
 
-    public static void traverse(Pixmap input, IntPositionConsumer t){
+    public static void traverse(Pixmap input, PixmapTraverser t){
         for(int x = 0; x < input.getWidth(); x++){
             for(int y = 0; y < input.getHeight(); y++){
-                t.accept(x, y);
+                t.traverse(x, y);
             }
         }
     }
@@ -167,5 +166,9 @@ public class Pixmaps{
         drawPixmap.setColor(color);
         drawPixmap.fill();
         texture.draw(drawPixmap, x, y);
+    }
+
+    public interface PixmapTraverser{
+        void traverse(int x, int y);
     }
 }
