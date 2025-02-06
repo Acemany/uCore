@@ -29,8 +29,8 @@ public class Inputs{
     private static Array<InputDevice> devices = new Array<>();
     private static InputProcessor listen = new InputAdapter(){
         @Override
-        public boolean scrolled(int amount){
-            scroll = -amount;
+        public boolean scrolled(float amountX, float amountY){
+            scroll = -(int)amountY;
             return false;
         }
 

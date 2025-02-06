@@ -28,8 +28,8 @@ import ucore.scene.Scene;
  */
 public class InputEvent extends Event{
     private Type type;
-    private float stageX, stageY;
-    private int pointer, button, keyCode, scrollAmount;
+    private float stageX, stageY, scrollAmountX, scrollAmountY;
+    private int pointer, button, keyCode;
     private char character;
     private Element relatedActor;
 
@@ -109,13 +109,21 @@ public class InputEvent extends Event{
         this.character = character;
     }
 
-    /** The amount the mouse was scrolled. Valid for: scrolled. */
-    public int getScrollAmount(){
-        return scrollAmount;
+    /** The horizontal amount the mouse was scrolled. Valid for: scrolled. */
+    public float getScrollAmountX(){
+        return scrollAmountX;
+    }
+    /** The vertical amount the mouse was scrolled. Valid for: scrolled. */
+    public float getScrollAmountY(){
+        return scrollAmountY;
     }
 
-    public void setScrollAmount(int scrollAmount){
-        this.scrollAmount = scrollAmount;
+    public void setScrollAmountX(float scrollAmount){
+        this.scrollAmountX = scrollAmount;
+    }
+
+    public void setScrollAmountY(float scrollAmount){
+        this.scrollAmountY = scrollAmount;
     }
 
     /**

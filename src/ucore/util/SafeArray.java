@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class SafeArray<T> extends Array<T>{
     @Override
-    public Iterator<T> iterator(){
+    public ArrayIterator<T> iterator(){
         return new ArrayIterator<>(this);
     }
 }

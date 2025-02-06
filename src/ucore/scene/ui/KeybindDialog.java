@@ -304,7 +304,7 @@ public class KeybindDialog extends Dialog{
                 }
 
                 @Override
-                public boolean scrolled(InputEvent event, float x, float y, int amount){
+                public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY){
                     if(!rebindAxis) return false;
                     rebindDialog.hide();
                     rebind(Input.SCROLL);

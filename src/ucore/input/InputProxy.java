@@ -41,6 +41,11 @@ public class InputProxy implements Input{
     }
 
     @Override
+    public int getMaxPointers(){
+        return input.getMaxPointers();
+    }
+
+    @Override
     public int getX(){
         return input.getX();
     }
@@ -101,6 +106,11 @@ public class InputProxy implements Input{
     }
 
     @Override
+    public boolean isButtonJustPressed(int button){
+        return input.isButtonJustPressed(button);
+    }
+
+    @Override
     public boolean isKeyPressed(int key){
         return input.isKeyPressed(key);
     }
@@ -116,8 +126,18 @@ public class InputProxy implements Input{
     }
 
     @Override
+    public void getTextInput(TextInputListener listener, String title, String text, String hint, OnscreenKeyboardType type){
+        input.getTextInput(listener, title, text, hint, type);
+    }
+
+    @Override
     public void setOnscreenKeyboardVisible(boolean visible){
         input.setOnscreenKeyboardVisible(visible);
+    }
+
+    @Override
+    public void setOnscreenKeyboardVisible(boolean visible, OnscreenKeyboardType type){
+        input.setOnscreenKeyboardVisible(visible, type);
     }
 
     @Override
@@ -162,22 +182,32 @@ public class InputProxy implements Input{
 
     @Override
     public boolean isCatchBackKey(){
-        return input.isCatchBackKey();
+        return input.isCatchKey(Keys.BACK);
     }
 
     @Override
     public void setCatchBackKey(boolean catchBack){
-        input.setCatchBackKey(catchBack);
+        input.setCatchKey(Keys.BACK, catchBack);
     }
 
     @Override
     public boolean isCatchMenuKey(){
-        return input.isCatchMenuKey();
+        return input.isCatchKey(Keys.MENU);
+    }
+
+    @Override
+    public void setCatchKey(int key, boolean catchKey){
+        input.setCatchKey(key, catchKey);
+    }
+
+    @Override
+    public boolean isCatchKey(int key){
+        return input.isCatchKey(key);
     }
 
     @Override
     public void setCatchMenuKey(boolean catchMenu){
-        input.setCatchMenuKey(catchMenu);
+        input.setCatchKey(Keys.MENU, catchMenu);
     }
 
     @Override
